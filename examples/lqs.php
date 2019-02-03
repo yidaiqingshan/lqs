@@ -1,21 +1,23 @@
 <?php
 
-$http = new swoole_http_server("127.0.0.1", 9501);
 
+//创建Server对象，监听 127.0.0.1:9501端口
+$serv = new swoole_server("127.0.0.1", 9501);
 
-print_r($http);
-
-
-$http->on("request", function ($request, $response) {
-    $client = new Swoole\Coroutine\Client(SWOOLE_SOCK_TCP);
-    $client->connect("127.0.0.1", 8888, 0.5);
-    //调用connect将触发协程切换
-    $client->send("hello world from swoole");
-    //调用recv将触发协程切换
-    $ret = $client->recv();
-    $response->header("Content-Type", "text/plain");
-    $response->end($ret);
-    $client->close();
+//监听连接进入事件
+$serv->on('connect', function ($serv, $fd) {
+    echo "Client: Connect.\n";
 });
 
-$http->start();
+//监听数据接收事件
+$serv->on('receive', function ($serv, $fd, $from_id, $data) {
+    $serv->send($fd, "Server: ".$data);
+});
+
+//监听连接关闭事件
+$serv->on('close', function ($serv, $fd) {
+    echo "Client: Close.\n";
+});
+
+//启动服务器
+$serv->start();
