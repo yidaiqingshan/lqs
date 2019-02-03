@@ -3,7 +3,7 @@
 $http = new swoole_http_server("127.0.0.1", 9501);
 
 $func = new ReflectionClass('swoole_http_server');      //所要查询的类名
-echo    $func->getFileName();
+echo    $func->getFileName().'@@@@';
 
 $http->on("request", function ($request, $response) {
     $client = new Swoole\Coroutine\Client(SWOOLE_SOCK_TCP);
