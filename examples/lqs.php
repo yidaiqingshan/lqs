@@ -21,7 +21,7 @@
 ////启动服务器
 //$serv->start();
 
-//创建websocket服务器对象，监听0.0.0.0:9502端口
+//创建websocket服务器对象，监听0.0.0.0:9602端口
 $ws = new swoole_websocket_server("0.0.0.0", 9602);
 
 //监听WebSocket连接打开事件
@@ -40,5 +40,5 @@ $ws->on('message', function ($ws, $frame) {
 $ws->on('close', function ($ws, $fd) {
     echo "client-{$fd} is closed\n";
 });
-
+//
 $ws->start();
