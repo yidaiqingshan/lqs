@@ -1,6 +1,6 @@
 <?php
 
-$client = new Swoole\Coroutine\Client(SWOOLE_SOCK_TCP, SWOOLE_SOCK_ASYNC);
+$client = new Swoole\Coroutine\Client(SWOOLE_SOCK_TCP);
 
 //注册连接成功回调
 $client->on("connect", function($cli) {
