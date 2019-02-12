@@ -7,16 +7,21 @@ if (!$client->connect('127.0.0.1', 10000, 0.5))
 {
     die("connect failed.");
 }
-//向服务器发送数据
-if (!$client->send("hello world\n"))
-{
-    die("send failed.");
-}
+while (1){
+    //向服务器发送数据
+    if (!$client->send("hello ".rand(1,999)."\n"))
+    {
+        die("send failed.");
+    }
 //从服务器接收数据
-$data = $client->recv();
-if (!$data)
-{
-    die("recv failed.");
+    $data = $client->recv();
+    if (!$data)
+    {
+        die("recv failed.");
+    }
+    echo $data;
+    sleep(1);
 }
-echo $data;
+
 //关闭连接
+$client->close();
