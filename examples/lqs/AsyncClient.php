@@ -4,9 +4,9 @@
 go(function (){
     $db = new Swoole\MySQL;
     $server = array(
-        'host' => '127.0.0.1',
+        'host' => '127.0.0.1:3306',
         'user' => 'root',
-        'password' => 'root',
+        'password' => '136LQS15opq',
         'database' => 'test',
     );
 
