@@ -6,8 +6,9 @@ go(function (){
     $server = array(
         'host' => '127.0.0.1',
         'user' => 'root',
-        'password' => '136LQS15opq',
+        'password' => '136lqs15opq',
         'database' => 'yidai',
+        'port' => 3306,
     );
 
     $db->connect($server, function ($db, $result) {
