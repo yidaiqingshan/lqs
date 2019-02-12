@@ -8,7 +8,7 @@ if (!$client->connect('127.0.0.1', 10000, 0.5))
     die("connect failed.");
 }
 //向服务器发送数据
-if (!$client->send("hello world"))
+if (!$client->send("hello world\n"))
 {
     die("send failed.");
 }
@@ -20,4 +20,3 @@ if (!$data)
 }
 echo $data;
 //关闭连接
-$client->close();
