@@ -1,34 +1,31 @@
 <?php
 
-$client = new Swoole\Coroutine\Client(SWOOLE_SOCK_TCP);
+go(function (){
+    $client = new swoole_client(SWOOLE_SOCK_TCP, SWOOLE_SOCK_ASYNC);
 
 //注册连接成功回调
-$client->on("connect", function($cli) {
-    $cli->send("开始计算\n");
-    while (1){
-        $a = rand(1,999);
-        $b = rand(1,999);
-        $cli->send($a.' * '.$b.' = '.$a*$b."\n");
-        sleep(2);
-    }
-});
+    $client->on("connect", function($cli) {
+        $cli->send("hello world\n");
+    });
 
 //注册数据接收回调
-$client->on("receive", function($cli, $data){
-    echo "Received: ".$data."\n";
-    $cli->close();
-});
+    $client->on("receive", function($cli, $data){
+        echo "Received: ".$data."\n";
+    });
 
 //注册连接失败回调
-$client->on("error", function($cli){
-    echo "连接失败\n";
-});
+    $client->on("error", function($cli){
+        echo "Connect failed\n";
+    });
 
 //注册连接关闭回调
-$client->on("close", function($cli){
-    echo "关闭连接\n";
-});
+    $client->on("close", function($cli){
+        echo "Connection close\n";
+    });
 
 //发起连接
-$client->connect('127.0.0.1', 10000, 0.5);
+    $client->connect('127.0.0.1', 10000, 0.5);
+});
+
+
 
