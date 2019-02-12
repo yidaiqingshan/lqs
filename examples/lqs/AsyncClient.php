@@ -4,10 +4,10 @@
 go(function (){
     $db = new Swoole\MySQL;
     $server = array(
-        'host' => '127.0.0.1:3306',
+        'host' => '127.0.0.1',
         'user' => 'root',
         'password' => '136LQS15opq',
-        'database' => 'test',
+        'database' => 'yidai',
     );
 
     $db->connect($server, function ($db, $result) {
