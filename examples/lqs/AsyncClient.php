@@ -11,10 +11,11 @@ go(function (){
     );
 
     $db->connect($server, function ($db, $result) {
+        var_dump($db);
         var_dump($result);
-        $db->query("show tables", function (Swoole\MySQL $db, $result) {
-            var_dump($result);
-            $db->close();
-        });
+//        $db->query("show tables", function (Swoole\MySQL $db, $result) {
+//            var_dump($result);
+//            $db->close();
+//        });
     });
 });
