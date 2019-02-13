@@ -1,6 +1,6 @@
 <?php
 
-//异步
+//异步mysql客户端
 go(function (){
     $db = new Swoole\MySQL;
     $server = array(
@@ -11,6 +11,7 @@ go(function (){
     );
 
     $db->connect($server, function ($db, $result) {
+        var_dump($result);
         $db->query("show tables", function (Swoole\MySQL $db, $result) {
             var_dump($result);
             $db->close();
